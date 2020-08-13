@@ -99,10 +99,12 @@ struct Thumbnail: Codable {
     }
 }
 
-// Use rawValue
+// RawValue is used, deactivate swiftLint rule
 enum Extension: String, Codable {
+    // swiftlint:disable redundant_string_enum_value
     case gif = "gif"
     case jpg = "jpg"
+    // swiftlint:enable redundant_string_enum_value
 }
 
 // MARK: - URLElement

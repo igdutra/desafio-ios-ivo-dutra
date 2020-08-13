@@ -27,6 +27,7 @@ extension ViewCodable {
 
     // Sometimes will not be implemented
     func setupAcessibilityIdentifiers() { }
+    func render() { } 
 
     func setupView() {
         configure()

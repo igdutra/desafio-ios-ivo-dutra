@@ -17,7 +17,6 @@ class CharactersViewController: UIViewController {
     // MARK: - Properties
 
     var viewModel: CharactersViewModelProtocol?
-    var name: String
 
     private var myView: CharactersView {
        // swiftlint:disable force_cast
@@ -27,8 +26,7 @@ class CharactersViewController: UIViewController {
 
     // MARK: - Init
 
-    init(name: String) {
-        self.name = name
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -46,7 +44,7 @@ class CharactersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = self.name
+        self.title = "Marvel's Characters"
 
         let viewModel = CharactersViewModel(services: MarvelCharactersService(),
                                             delegate: myView,

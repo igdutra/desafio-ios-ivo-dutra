@@ -10,7 +10,7 @@ import UIKit
 
 /// ViewModel's Delegate is the View
 protocol CharactersViewModelDelegate: class {
-    func reload()
+    func reloadTableView()
 }
 
 protocol CharactersViewModelProtocol {
@@ -42,9 +42,8 @@ class CharactersViewModel: CharactersViewModelProtocol {
         // Each request will add 20 characters to the array
         get20Characters {
             // Only after all characters where loaded, perfom the request for the images using infite scroll.
-
+            self.delegate?.reloadTableView()
         }
-
 
     }
 

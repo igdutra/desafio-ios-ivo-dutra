@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let navigationController = UINavigationController(rootViewController: CharactersViewController(name: "test"))
+        let navigationController = UINavigationController(rootViewController: CharactersViewController())
 
         // Remove Main.storyboard dependency
         window = UIWindow(frame: UIScreen.main.bounds)
