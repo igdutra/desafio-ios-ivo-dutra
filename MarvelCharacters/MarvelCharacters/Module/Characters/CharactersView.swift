@@ -14,7 +14,7 @@ class CharactersView: UIView {
 
     var cellId: String
 
-    var viewModel: ViewModelProtocol?
+    var viewModel: CharactersViewModelProtocol?
 
     // MARK: - Init
 

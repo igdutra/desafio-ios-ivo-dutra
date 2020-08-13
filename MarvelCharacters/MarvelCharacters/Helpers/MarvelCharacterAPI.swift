@@ -43,6 +43,14 @@ struct Character: Codable {
         case resultDescription = "description"
         case modified, thumbnail, resourceURI, comics, series, stories, events, urls
     }
+
+    // Get image URL
+    func getImageURL() -> URL? {
+        guard let thumbnailExtension = self.thumbnail.thumbnailExtension?.rawValue else { return nil }
+        let httpsPath = self.thumbnail.path.replacingOccurrences(of: "http", with: "https")
+        // Load only portrait_medium images
+        return URL(string: (httpsPath + "/portrait_medium." + thumbnailExtension))
+    }
 }
 
 // MARK: - Comics
@@ -91,9 +99,10 @@ struct Thumbnail: Codable {
     }
 }
 
+// Use rawValue
 enum Extension: String, Codable {
-    case gif
-    case jpg
+    case gif = "gif"
+    case jpg = "jpg"
 }
 
 // MARK: - URLElement

@@ -19,6 +19,7 @@
 		C56A495424E4D442008D5DF0 /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56A495124E4D442008D5DF0 /* CharactersView.swift */; };
 		C56A495524E4D442008D5DF0 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56A495224E4D442008D5DF0 /* CharactersViewController.swift */; };
 		C56A495624E4D442008D5DF0 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56A495324E4D442008D5DF0 /* CharactersViewModel.swift */; };
+		C56A495824E4D9A4008D5DF0 /* MarvelCharactersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56A495724E4D9A4008D5DF0 /* MarvelCharactersService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		C56A495124E4D442008D5DF0 /* CharactersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersView.swift; sourceTree = "<group>"; };
 		C56A495224E4D442008D5DF0 /* CharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		C56A495324E4D442008D5DF0 /* CharactersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
+		C56A495724E4D9A4008D5DF0 /* MarvelCharactersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharactersService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		C51CF04524E4B96C00F90C2D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C56A495724E4D9A4008D5DF0 /* MarvelCharactersService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				C56A495624E4D442008D5DF0 /* CharactersViewModel.swift in Sources */,
 				C526E8CA24E30D73008290B2 /* AppDelegate.swift in Sources */,
 				C51CF04824E4C00200F90C2D /* String+Extension.swift in Sources */,
+				C56A495824E4D9A4008D5DF0 /* MarvelCharactersService.swift in Sources */,
 				C526E8CC24E30D73008290B2 /* SceneDelegate.swift in Sources */,
 				C56A494F24E4D35E008D5DF0 /* ViewCodable.swift in Sources */,
 				C56A495424E4D442008D5DF0 /* CharactersView.swift in Sources */,

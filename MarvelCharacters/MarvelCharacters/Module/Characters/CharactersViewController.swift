@@ -16,7 +16,7 @@ class CharactersViewController: UIViewController {
 
     // MARK: - Properties
 
-    var viewModel: ViewModelProtocol?
+    var viewModel: CharactersViewModelProtocol?
     var name: String
 
     private var myView: CharactersView {
@@ -48,15 +48,12 @@ class CharactersViewController: UIViewController {
 
         self.title = self.name
 
-        let viewModel = ViewModel(services: Services(),
-                                  delegate: myView,
-                                  navigation: self)
+        let viewModel = CharactersViewModel(services: MarvelCharactersService(),
+                                            delegate: myView,
+                                            navigation: self)
 
         self.viewModel = viewModel
         myView.viewModel = viewModel
-
-        let pubKey = ProcessInfo.processInfo.environment["publicAPIKey"]
-        print(pubKey)
     }
 }
 

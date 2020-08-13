@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: escolher foto para appIcon
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
