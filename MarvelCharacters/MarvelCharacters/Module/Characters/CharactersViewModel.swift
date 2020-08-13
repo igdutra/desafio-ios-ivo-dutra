@@ -5,7 +5,6 @@
 //  Created by Ivo Dutra on 12/08/20.
 //  Copyright © 2020 Ivo Dutra. All rights reserved.
 //
-// TODO: renomear cabeçalho
 
 import UIKit
 

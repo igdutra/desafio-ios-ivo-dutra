@@ -5,7 +5,6 @@
 //  Created by Ivo Dutra on 11/08/20.
 //  Copyright © 2020 Ivo Dutra. All rights reserved.
 //
-// TODO: renomear cabeçalho
 
 import UIKit
 
@@ -55,6 +54,9 @@ class CharactersViewController: UIViewController {
 
         self.viewModel = viewModel
         myView.viewModel = viewModel
+
+        let pubKey = ProcessInfo.processInfo.environment["publicAPIKey"]
+        print(pubKey)
     }
 }
 
