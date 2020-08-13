@@ -6,11 +6,12 @@
 //  Copyright © 2020 Ivo Dutra. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol MarvelCharactersServiceProtocol {
     var offset: Int { get set }
     func requestCharacters(completion: @escaping ([Character]?) -> Void)
+    func fetchSingleImage(at url: URL, _ completion: @escaping (UIImage) -> Void)
 }
 
 /// Services Layer for PhotoInfo
@@ -80,6 +81,22 @@ class MarvelCharactersService: MarvelCharactersServiceProtocol {
         }
 
         task.resume()
+    }
+
+    // MARK: - Fetch Image
+
+     /// Fetches one image
+    func fetchSingleImage(at url: URL, _ completion: @escaping (UIImage) -> Void) {
+
+        // Request the image
+        let imageTask = URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data, let image = UIImage(data: data) else { return }
+
+            // The image should be saved at the correct position from the images array
+            completion(image)
+        }
+
+        imageTask.resume()
     }
 
     // MARK: - Errors

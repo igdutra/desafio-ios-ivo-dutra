@@ -14,6 +14,7 @@ class CharactersView: UIView {
 
     var tableView: UITableView
     var cellId: String
+    var fetchingMore: Bool
 
     var viewModel: CharactersViewModelProtocol?
 
@@ -22,9 +23,9 @@ class CharactersView: UIView {
     override init(frame: CGRect) {
         tableView = UITableView()
         cellId = "cell"
+        fetchingMore = false
 
         super.init(frame: frame)
-        self.backgroundColor = .purple
 
         setupView()
     }
@@ -49,8 +50,7 @@ extension CharactersView: UITableViewDelegate, UITableViewDataSource {
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? CharachtersTableViewCell {
             // Update CentralImageView or use the placeholder before request is finished
-//            cell.centralImageView.image = viewModel.images[indexPath.row] ?? UIImage.Default.photoPlaceholder!
-            cell.centralImageView.image = UIImage.Default.photoPlaceholder!
+            cell.centralImageView.image = viewModel.images[indexPath.row] ?? UIImage.Default.photoPlaceholder!
 
             // Add title according to the day
             cell.titleLabel.text = viewModel.characters[indexPath.row].name
@@ -97,3 +97,32 @@ extension CharactersView: ViewCodable {
         }
     }
 }
+
+// TODO: infinite scroll
+
+//
+//    // MARK: - Infinite scroll
+//
+//extension CharactersView {
+//
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let offsetY = scrollView.contentOffset.y
+//        // Calculated automatically, considered all images
+//        let contentHeight = scrollView.contentSize.height
+//
+//        // If the scroll action was greater than the content - device size
+//        if offsetY > contentHeight - scrollView.frame.height {
+//            if !fetchingMore {
+//                fetchMoreImages()
+//            }
+//        }
+//    }
+//
+//    func fetchMoreImages() {
+//        // Prevent calling several times
+//        fetchingMore = true
+//        viewModel?.get20Characters { [weak self] in
+//            self?.fetchingMore = false
+//        }
+//    }
+//}

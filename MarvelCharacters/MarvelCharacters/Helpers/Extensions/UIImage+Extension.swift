@@ -33,4 +33,24 @@ extension UIImage {
 
        return image
     }
+
+    /// Calculate image correct size, based on device width
+    func resizedImage(toFitIn width: CGFloat) -> UIImage {
+
+        // Calculate resize ratio based on the device width (-16 to leading and trailing anchors from CharachtersTableViewCell)
+        let resizeRatio = (width - 16) / self.size.width
+
+        // Apply same ratio to both dimensions, in order to respect its aspect Ratio
+        let size = self.size.applying(CGAffineTransform(scaleX: resizeRatio, y: resizeRatio))
+        let hasAlpha = true
+        let scale: CGFloat = 0.0 // Automatically use scale factor of main screen
+
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+        self.draw(in: CGRect(origin: .zero, size: size))
+
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        return newImage?.withRoundedCorners(radius: 12) ?? UIImage()
+    }
 }
