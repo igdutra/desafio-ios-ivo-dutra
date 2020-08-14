@@ -1,5 +1,5 @@
 //
-//  DetailViewModel.swift
+//  CharacterDetailViewModel.swift
 //  MarvelCharacters
 //
 //  Created by Ivo Dutra on 12/08/20.
@@ -9,30 +9,30 @@
 import UIKit
 
 /// ViewModel's Delegate is the View
-protocol DetailViewModelDelegate: class {
+protocol CharacterDetailViewModelDelegate: class {
     func reloadLabel()
     func reloadIcon(withImage: UIImage)
 }
 
-protocol DetailViewModelProtocol {
+protocol CharacterDetailViewModelProtocol {
     var character: Character { get set }
     var image: UIImage { get set }
-    var delegate: DetailViewModelDelegate? { get set }
+    var delegate: CharacterDetailViewModelDelegate? { get set }
     var navigationDelegate: NavigationDelegate? { get set }
 }
 
-class DetailViewModel: DetailViewModelProtocol {
+class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
 
     // MARK: - Properties
 
     var character: Character
     var image: UIImage
-    weak var delegate: DetailViewModelDelegate?
+    weak var delegate: CharacterDetailViewModelDelegate?
     weak var navigationDelegate: NavigationDelegate?
 
     // MARK: - Init
 
-    init(delegate: DetailViewModelDelegate, navigation: NavigationDelegate, character: Character, image: UIImage) {
+    init(delegate: CharacterDetailViewModelDelegate, navigation: NavigationDelegate, character: Character, image: UIImage) {
         self.character = character
         self.image = image
         self.delegate = delegate

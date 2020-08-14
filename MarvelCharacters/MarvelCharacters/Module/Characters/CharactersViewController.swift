@@ -60,7 +60,7 @@ class CharactersViewController: UIViewController {
 extension CharactersViewController: CharactersNavigationDelegate {
 
     func goToDetail(forCharacter character: Character, withImage image: UIImage) {
-        let detailController = DetailViewController(forCharacter: character, withImage: image)
+        let detailController = CharacterDetailViewController(forCharacter: character, withImage: image)
         self.navigationController?.pushViewController(detailController, animated: false)
     }
     

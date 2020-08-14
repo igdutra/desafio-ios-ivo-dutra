@@ -8,14 +8,15 @@
 
 import UIKit
 
-class DetailView: UIView {
+class CharacterDetailView: UIView {
 
     // MARK: - Properties
 
     var descriptionLabel: UILabel
     var characterImageView: UIImageView
+    var comicsButton: UIButton
 
-    var viewModel: DetailViewModelProtocol? {
+    var viewModel: CharacterDetailViewModelProtocol? {
         // Guarantees that label is configured when viewModel is set
         didSet {
             configure()
@@ -27,6 +28,7 @@ class DetailView: UIView {
     override init(frame: CGRect) {
         descriptionLabel = UILabel()
         characterImageView = UIImageView()
+        comicsButton = UIButton()
 
         super.init(frame: frame)
 
@@ -40,7 +42,7 @@ class DetailView: UIView {
 
     // MARK: - Delegate
 
-extension DetailView: DetailViewModelDelegate {
+extension CharacterDetailView: CharacterDetailViewModelDelegate {
 
     func reloadLabel() {
         configure()
@@ -51,9 +53,18 @@ extension DetailView: DetailViewModelDelegate {
     }
 }
 
+    // MARK: - Button
+
+extension CharacterDetailView {
+
+    @objc func buttonPressed(sender: UIButton!) {
+        print("preeesh")
+    }
+}
+
     // MARK: - View Codable
 
-extension DetailView: ViewCodable {
+extension CharacterDetailView: ViewCodable {
 
     func configure() {
         guard let viewModel = viewModel else { return }
@@ -61,24 +72,19 @@ extension DetailView: ViewCodable {
         let description = (viewModel.character.characterDescription.isEmpty) ?
                             "No Description :'(" : viewModel.character.characterDescription
 
-        // UI Code should run on main Thread
-        DispatchQueue.main.async {
-            self.descriptionLabel.font = UIFont.boldSystemFont(ofSize: 20)
-            self.descriptionLabel.textAlignment = .center
-            self.descriptionLabel.numberOfLines = 0
-            self.descriptionLabel.text = description
-            // After the view is configured
-            self.setDescriptionLabelConstraints()
-        }
+        configureLabel(withDescription: description)
+
+        configureButton()
     }
 
     func setupHierarchy() {
-        self.addSubviews(descriptionLabel, characterImageView)
+        self.addSubviews(descriptionLabel, characterImageView, comicsButton)
     }
 
     func setupConstraints() {
         setCharacterImageViewConstraints()
-        // Label constraints are set later
+        setDescriptionLabelConstraints()
+        setComicsButtonConstraints()
     }
 
     func render() {
@@ -90,6 +96,30 @@ extension DetailView: ViewCodable {
     func configureIcon(withImage image: UIImage) {
         DispatchQueue.main.async {
             self.characterImageView.image = image
+        }
+    }
+
+    func configureLabel(withDescription description: String) {
+        // UI Code should run on main Thread
+        DispatchQueue.main.async {
+            self.descriptionLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            self.descriptionLabel.textAlignment = .center
+            // OBS: As requested, "Os campos de texto devem ter no máximo 3 linhas"
+            self.descriptionLabel.numberOfLines = 3
+            self.descriptionLabel.text = description
+        }
+    }
+
+    func configureButton() {
+        comicsButton.addTarget(self, action: #selector(CharacterDetailView.buttonPressed(sender:)), for: .touchUpInside)
+
+        DispatchQueue.main.async {
+            self.comicsButton.setTitle(" Check its most expensive Comic!  ", for: .normal)
+            self.comicsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            self.comicsButton.setTitleColor(.white, for: .disabled)
+            self.comicsButton.titleLabel?.textAlignment = .center
+            self.comicsButton.layer.cornerRadius = 12
+            self.comicsButton.backgroundColor = .red
         }
     }
 
@@ -108,6 +138,13 @@ extension DetailView: ViewCodable {
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
             view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        }
+    }
+
+    func setComicsButtonConstraints() {
+        comicsButton.setConstraints { (view) in
+            view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -84).isActive = true
         }
     }
 

@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  CharacterDetailViewController.swift
 //  MarvelCharacters
 //
 //  Created by Ivo Dutra on 11/08/20.
@@ -12,17 +12,17 @@ protocol NavigationDelegate: class {
     func goTo()
 }
 
-class DetailViewController: UIViewController {
+class CharacterDetailViewController: UIViewController {
 
     // MARK: - Properties
 
-    var viewModel: DetailViewModelProtocol?
+    var viewModel: CharacterDetailViewModelProtocol?
     var character: Character
     var image: UIImage
 
-    private var myView: DetailView {
+    private var myView: CharacterDetailView {
        // swiftlint:disable force_cast
-       return view as! DetailView
+       return view as! CharacterDetailView
        // swiftlint:enable force_cast
     }
 
@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
     // MARK: - Life Cycle
 
     override func loadView() {
-        let myView = DetailView()
+        let myView = CharacterDetailView()
         view = myView
     }
 
@@ -50,7 +50,7 @@ class DetailViewController: UIViewController {
 
         self.title = self.character.name
 
-        let viewModel = DetailViewModel(delegate: myView,
+        let viewModel = CharacterDetailViewModel(delegate: myView,
                                         navigation: self,
                                         character: character,
                                         image: image)
@@ -62,7 +62,7 @@ class DetailViewController: UIViewController {
 
     // MARK: - Navigation
 
-extension DetailViewController: NavigationDelegate {
+extension CharacterDetailViewController: NavigationDelegate {
 
     func goTo() {
 
