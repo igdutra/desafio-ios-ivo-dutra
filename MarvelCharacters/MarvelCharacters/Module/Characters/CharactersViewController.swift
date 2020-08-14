@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CharactersNavigationDelegate: class {
-    func goToDetail(forCharacter: Character)
+    func goToDetail(forCharacter: Character, withImage: UIImage)
 }
 
 class CharactersViewController: UIViewController {
@@ -59,8 +59,8 @@ class CharactersViewController: UIViewController {
 
 extension CharactersViewController: CharactersNavigationDelegate {
 
-    func goToDetail(forCharacter character: Character) {
-        let detailController = DetailViewController(forCharacter: character)
+    func goToDetail(forCharacter character: Character, withImage image: UIImage) {
+        let detailController = DetailViewController(forCharacter: character, withImage: image)
         self.navigationController?.pushViewController(detailController, animated: false)
     }
     

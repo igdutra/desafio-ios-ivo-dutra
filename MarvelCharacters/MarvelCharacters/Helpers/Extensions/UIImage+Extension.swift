@@ -37,7 +37,7 @@ extension UIImage {
     /// Calculate image correct size, based on device width
     func resizedImage(toFitIn width: CGFloat) -> UIImage {
 
-        // Calculate resize ratio based on the device width (-16 to leading and trailing anchors from CharachtersTableViewCell)
+        // Calculate resize ratio based on the device width (-16 to leading and trailing anchors from CharactersTableViewCell)
         let resizeRatio = (width - 16) / self.size.width
 
         // Apply same ratio to both dimensions, in order to respect its aspect Ratio

@@ -48,7 +48,7 @@ extension CharactersView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { return UITableViewCell() }
 
-        if let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? CharachtersTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? CharactersTableViewCell {
             // Update CentralImageView or use the placeholder before request is finished
             cell.centralImageView.image = viewModel.images[indexPath.row] ?? UIImage.Default.photoPlaceholder!
 
@@ -64,11 +64,13 @@ extension CharactersView: UITableViewDelegate, UITableViewDataSource {
     // MARK: - Navigation
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel,
+              let image = viewModel.images[indexPath.row]
+        else { return }
 
         let character = viewModel.characters[indexPath.row]
 
-        viewModel.navigationDelegate?.goToDetail(forCharacter: character)
+        viewModel.navigationDelegate?.goToDetail(forCharacter: character, withImage: image)
     }
 
 }
@@ -92,7 +94,7 @@ extension CharactersView: ViewCodable {
     func configure() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(CharachtersTableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(CharactersTableViewCell.self, forCellReuseIdentifier: cellId)
     }
 
     func setupHierarchy() {

@@ -1,5 +1,5 @@
 //
-//  CharachtersTableViewCell.swift
+//  CharactersTableViewCell.swift
 //  MarvelCharacters
 //
 //  Created by Ivo Dutra on 13/08/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharachtersTableViewCell: UITableViewCell {
+class CharactersTableViewCell: UITableViewCell {
 
     // MARK: - Properties
     var centralImageView: UIImageView
@@ -32,13 +32,13 @@ class CharachtersTableViewCell: UITableViewCell {
 
     // MARK: - Delegate
 
-extension CharachtersTableViewCell {
+extension CharactersTableViewCell {
 
 }
 
     // MARK: - View Codable
 
-extension CharachtersTableViewCell: ViewCodable {
+extension CharactersTableViewCell: ViewCodable {
 
     func configure() {
         configureCentralImage()

@@ -8,17 +8,13 @@
 
 import UIKit
 
-// APAGAR
-class Services: ServicesProtocol {}
-protocol ServicesProtocol {}
-
 /// ViewModel's Delegate is the View
 protocol DetailViewModelDelegate: class {
-    func reload()
+    func reloadLabel()
+    func reloadIcon(withImage: UIImage)
 }
 
 protocol DetailViewModelProtocol {
-    var services: ServicesProtocol { get set }
     var delegate: DetailViewModelDelegate? { get set }
     var navigationDelegate: NavigationDelegate? { get set }
 }
@@ -27,16 +23,26 @@ class DetailViewModel: DetailViewModelProtocol {
 
     // MARK: - Properties
 
-    var services: ServicesProtocol
+    var character: Character
+    var image: UIImage
     weak var delegate: DetailViewModelDelegate?
     weak var navigationDelegate: NavigationDelegate?
 
     // MARK: - Init
 
-    init(services: ServicesProtocol, delegate: DetailViewModelDelegate, navigation: NavigationDelegate) {
-        self.services = services
+    init(delegate: DetailViewModelDelegate, navigation: NavigationDelegate, character: Character, image: UIImage) {
+        self.character = character
+        self.image = image
         self.delegate = delegate
         self.navigationDelegate = navigation
+
+        configureDetailView()
+    }
+
+    // MARK: - Configure
+
+    func configureDetailView() {
+        delegate?.reloadIcon(withImage: image)
     }
 
 }

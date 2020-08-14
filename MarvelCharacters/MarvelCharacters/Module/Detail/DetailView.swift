@@ -12,14 +12,16 @@ class DetailView: UIView {
 
     // MARK: - Properties
 
-    var cellId: String
+    var descriptionLabel: UILabel
+    var characterImageView: UIImageView
 
     var viewModel: DetailViewModelProtocol?
 
     // MARK: - Init
 
     override init(frame: CGRect) {
-        cellId = "cell"
+        descriptionLabel = UILabel()
+        characterImageView = UIImageView()
 
         super.init(frame: frame)
 
@@ -29,38 +31,76 @@ class DetailView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }
 
     // MARK: - Delegate
 
 extension DetailView: DetailViewModelDelegate {
-     
-    func reload() {
 
+    func reloadLabel() {
+        configure()
     }
 
+    func reloadIcon(withImage image: UIImage) {
+        configureIcon(withImage: image)
+    }
 }
 
-    // MARK: - ViewCodable
+    // MARK: - View Codable
 
 extension DetailView: ViewCodable {
-    func configure() {
 
+    func configure() {
+        guard let viewModel = viewModel
+              else { return }
+
+        // UI Code should run on main Thread
+        DispatchQueue.main.async {
+            self.descriptionLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            self.descriptionLabel.textAlignment = .center
+            self.descriptionLabel.numberOfLines = 0
+            self.descriptionLabel.text = "some placeholder text"
+            // After the view is configured
+            self.setDescriptionLabelConstraints()
+        }
     }
 
     func setupHierarchy() {
-
+        self.addSubviews(descriptionLabel, characterImageView)
     }
 
     func setupConstraints() {
-
+        setCharacterImageViewConstraints()
+        // Label constraints are set later
     }
 
     func render() {
-
+        self.backgroundColor = .white
     }
 
-     // MARK: - ViewCodable Helpers
+      // MARK: - ViewCodable Helpers
+
+    func configureIcon(withImage image: UIImage) {
+        DispatchQueue.main.async {
+            self.characterImageView.image = image
+        }
+    }
+
+    func setCharacterImageViewConstraints() {
+           characterImageView.setConstraints { (view) in
+               view.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
+               view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+           }
+       }
+
+    func setDescriptionLabelConstraints() {
+        descriptionLabel.setConstraints { (view) in
+            // At least keep distance greater then 16 points
+            view.topAnchor.constraint(greaterThanOrEqualTo: characterImageView.bottomAnchor, constant: 16).isActive = true
+            // Give a label a width (leading and trailing) that for a given font Size it will calculate its own height
+            view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
+        }
+    }
 
 }

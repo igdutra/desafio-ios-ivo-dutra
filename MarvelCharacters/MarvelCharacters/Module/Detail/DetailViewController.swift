@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
 
     var viewModel: DetailViewModelProtocol?
     var character: Character
+    var image: UIImage
 
     private var myView: DetailView {
        // swiftlint:disable force_cast
@@ -27,8 +28,9 @@ class DetailViewController: UIViewController {
 
     // MARK: - Init
 
-    init(forCharacter character: Character) {
+    init(forCharacter character: Character, withImage image: UIImage) {
         self.character = character
+        self.image = image
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -48,9 +50,10 @@ class DetailViewController: UIViewController {
 
         self.title = self.character.name
 
-        let viewModel = DetailViewModel(services: Services(),
-                                        delegate: myView,
-                                        navigation: self)
+        let viewModel = DetailViewModel(delegate: myView,
+                                        navigation: self,
+                                        character: character,
+                                        image: image)
 
         self.viewModel = viewModel
         myView.viewModel = viewModel
