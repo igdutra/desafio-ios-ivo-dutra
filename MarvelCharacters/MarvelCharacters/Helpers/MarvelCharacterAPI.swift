@@ -29,7 +29,7 @@ struct DataClass: Codable {
 // MARK: - Result
 struct Character: Codable {
     let id: Int
-    let name, resultDescription: String
+    let name, characterDescription: String
     let modified: String
     let thumbnail: Thumbnail
     let resourceURI: String
@@ -40,7 +40,7 @@ struct Character: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, name
-        case resultDescription = "description"
+        case characterDescription = "description"
         case modified, thumbnail, resourceURI, comics, series, stories, events, urls
     }
 

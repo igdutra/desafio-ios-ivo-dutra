@@ -15,6 +15,8 @@ protocol DetailViewModelDelegate: class {
 }
 
 protocol DetailViewModelProtocol {
+    var character: Character { get set }
+    var image: UIImage { get set }
     var delegate: DetailViewModelDelegate? { get set }
     var navigationDelegate: NavigationDelegate? { get set }
 }
@@ -43,6 +45,7 @@ class DetailViewModel: DetailViewModelProtocol {
 
     func configureDetailView() {
         delegate?.reloadIcon(withImage: image)
+        delegate?.reloadLabel()
     }
 
 }

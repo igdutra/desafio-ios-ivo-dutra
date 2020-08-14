@@ -15,7 +15,12 @@ class DetailView: UIView {
     var descriptionLabel: UILabel
     var characterImageView: UIImageView
 
-    var viewModel: DetailViewModelProtocol?
+    var viewModel: DetailViewModelProtocol? {
+        // Guarantees that label is configured when viewModel is set
+        didSet {
+            configure()
+        }
+    }
 
     // MARK: - Init
 
@@ -51,15 +56,17 @@ extension DetailView: DetailViewModelDelegate {
 extension DetailView: ViewCodable {
 
     func configure() {
-        guard let viewModel = viewModel
-              else { return }
+        guard let viewModel = viewModel else { return }
+
+        let description = (viewModel.character.characterDescription.isEmpty) ?
+                            "No Description :'(" : viewModel.character.characterDescription
 
         // UI Code should run on main Thread
         DispatchQueue.main.async {
             self.descriptionLabel.font = UIFont.boldSystemFont(ofSize: 20)
             self.descriptionLabel.textAlignment = .center
             self.descriptionLabel.numberOfLines = 0
-            self.descriptionLabel.text = "some placeholder text"
+            self.descriptionLabel.text = description
             // After the view is configured
             self.setDescriptionLabelConstraints()
         }
@@ -96,10 +103,11 @@ extension DetailView: ViewCodable {
     func setDescriptionLabelConstraints() {
         descriptionLabel.setConstraints { (view) in
             // At least keep distance greater then 16 points
-            view.topAnchor.constraint(greaterThanOrEqualTo: characterImageView.bottomAnchor, constant: 16).isActive = true
+            view.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 16).isActive = true
             // Give a label a width (leading and trailing) that for a given font Size it will calculate its own height
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
+            view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         }
     }
 
