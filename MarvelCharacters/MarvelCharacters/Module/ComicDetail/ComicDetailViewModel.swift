@@ -14,22 +14,21 @@ protocol ComicDetailViewModelDelegate: class {
 }
 
 protocol ComicDetailViewModelProtocol {
+    var character: Character { get set }
     var delegate: ComicDetailViewModelDelegate? { get set }
-    var navigationDelegate: CharacterDetailNavigationDelegate? { get set }
 }
 
 class ComicDetailViewModel: ComicDetailViewModelProtocol {
 
     // MARK: - Properties
-
+    var character: Character
     weak var delegate: ComicDetailViewModelDelegate?
-    weak var navigationDelegate: CharacterDetailNavigationDelegate?
 
     // MARK: - Init
 
-    init(delegate: ComicDetailViewModelDelegate, navigation: CharacterDetailNavigationDelegate) {
+    init(delegate: ComicDetailViewModelDelegate, character: Character) {
         self.delegate = delegate
-        self.navigationDelegate = navigation
+        self.character = character
     }
 
 }

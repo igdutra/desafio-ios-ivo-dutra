@@ -14,7 +14,7 @@ protocol MarvelCharactersServiceProtocol {
     func fetchSingleImage(at url: URL, _ completion: @escaping (UIImage) -> Void)
 }
 
-/// Services Layer for PhotoInfo
+/// Services Layer for MarvelCharacters
 class MarvelCharactersService: MarvelCharactersServiceProtocol {
 
     // MARK: - Properties

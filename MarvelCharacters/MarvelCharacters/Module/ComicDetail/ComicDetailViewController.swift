@@ -6,20 +6,14 @@
 //  Copyright © 2020 Ivo Dutra. All rights reserved.
 //
 
-// TODO: renomear cabeçalho
-
 import UIKit
-
-//protocol NavigationDelegate: class {
-//    func goTo()
-//}
 
 class ComicDetailViewController: UIViewController {
 
     // MARK: - Properties
 
     var viewModel: ComicDetailViewModelProtocol?
-    var name: String
+    var character: Character
 
     private var myView: ComicDetailView {
        // swiftlint:disable force_cast
@@ -29,8 +23,8 @@ class ComicDetailViewController: UIViewController {
 
     // MARK: - Init
 
-    init(name: String) {
-        self.name = name
+    init(forCharacter character: Character) {
+        self.character = character
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -48,26 +42,12 @@ class ComicDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = self.name
+        self.title = ""
 
         let viewModel = ComicDetailViewModel(delegate: myView,
-                                             navigation: self)
+                                             character: character)
 
         self.viewModel = viewModel
         myView.viewModel = viewModel
     }
-}
-
-    // MARK: - Navigation
-
-extension ComicDetailViewController: CharacterDetailNavigationDelegate {
-    func goToComicDetail() {
-        
-    }
-
-
-    func goTo() {
-
-    }
-    
 }

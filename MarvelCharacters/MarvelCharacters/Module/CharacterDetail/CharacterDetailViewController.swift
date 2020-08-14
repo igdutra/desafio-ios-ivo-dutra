@@ -65,7 +65,7 @@ class CharacterDetailViewController: UIViewController {
 extension CharacterDetailViewController: CharacterDetailNavigationDelegate {
 
     func goToComicDetail() {
-        let comicDetailController = ComicDetailViewController(name: "")
+        let comicDetailController = ComicDetailViewController(forCharacter: character)
         self.navigationController?.pushViewController(comicDetailController, animated: false)
     }
 
