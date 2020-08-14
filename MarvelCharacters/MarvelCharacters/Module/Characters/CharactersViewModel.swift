@@ -18,7 +18,7 @@ protocol CharactersViewModelProtocol {
     var images: [Int: UIImage] { get set }
     var services: MarvelCharactersServiceProtocol { get set }
     var delegate: CharactersViewModelDelegate? { get set }
-    var navigationDelegate: NavigationDelegate? { get set }
+    var navigationDelegate: CharactersNavigationDelegate? { get set }
 
     func get20Characters(_ completion: @escaping () -> Void)
 }
@@ -32,11 +32,11 @@ class CharactersViewModel: CharactersViewModelProtocol {
 
     var services: MarvelCharactersServiceProtocol
     weak var delegate: CharactersViewModelDelegate?
-    weak var navigationDelegate: NavigationDelegate?
+    weak var navigationDelegate: CharactersNavigationDelegate?
 
     // MARK: - Init
 
-    init(services: MarvelCharactersServiceProtocol, delegate: CharactersViewModelDelegate, navigation: NavigationDelegate) {
+    init(services: MarvelCharactersServiceProtocol, delegate: CharactersViewModelDelegate, navigation: CharactersNavigationDelegate) {
         self.services = services
         self.delegate = delegate
         self.navigationDelegate = navigation

@@ -8,16 +8,16 @@
 
 import UIKit
 
-//protocol NavigationDelegate: class {
-//    func goTo()
-//}
+protocol NavigationDelegate: class {
+    func goTo()
+}
 
 class DetailViewController: UIViewController {
 
     // MARK: - Properties
 
     var viewModel: DetailViewModelProtocol?
-    var name: String
+    var character: Character
 
     private var myView: DetailView {
        // swiftlint:disable force_cast
@@ -27,8 +27,8 @@ class DetailViewController: UIViewController {
 
     // MARK: - Init
 
-    init(name: String) {
-        self.name = name
+    init(forCharacter character: Character) {
+        self.character = character
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -46,7 +46,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = self.name
+        self.title = self.character.name
 
         let viewModel = DetailViewModel(services: Services(),
                                         delegate: myView,

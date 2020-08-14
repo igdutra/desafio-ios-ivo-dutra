@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol NavigationDelegate: class {
-    func goTo()
+protocol CharactersNavigationDelegate: class {
+    func goToDetail(forCharacter: Character)
 }
 
 class CharactersViewController: UIViewController {
@@ -57,10 +57,11 @@ class CharactersViewController: UIViewController {
 
     // MARK: - Navigation
 
-extension CharactersViewController: NavigationDelegate {
+extension CharactersViewController: CharactersNavigationDelegate {
 
-    func goTo() {
-
+    func goToDetail(forCharacter character: Character) {
+        let detailController = DetailViewController(forCharacter: character)
+        self.navigationController?.pushViewController(detailController, animated: false)
     }
     
 }

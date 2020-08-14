@@ -60,6 +60,17 @@ extension CharactersView: UITableViewDelegate, UITableViewDataSource {
 
         return UITableViewCell()
     }
+
+    // MARK: - Navigation
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+
+        let character = viewModel.characters[indexPath.row]
+
+        viewModel.navigationDelegate?.goToDetail(forCharacter: character)
+    }
+
 }
 
     // MARK: - Delegate
