@@ -19,7 +19,7 @@ class MarvelCharactersService: MarvelCharactersServiceProtocol {
 
     // MARK: - Properties
 
-    let baseMarvelURL: URL
+    var baseMarvelURL: URL
     var publicKey: String = ""
     var privateKey: String = ""
     var ts: String = ""
@@ -76,8 +76,8 @@ class MarvelCharactersService: MarvelCharactersServiceProtocol {
                     guard let characters = marvelAPI.data?.results else { return }
                     completion(characters)
                 } catch let err {
-                    print(url)
-                    print(err)
+                    print(err, "\nError while decoding JSON")
+                    completion(nil)
                 }
             } else {
                 print("No data returned")

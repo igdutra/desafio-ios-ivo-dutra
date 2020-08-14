@@ -12,7 +12,7 @@
 		C526E8CA24E30D73008290B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526E8C924E30D73008290B2 /* AppDelegate.swift */; };
 		C526E8D324E30D75008290B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C526E8D224E30D75008290B2 /* Assets.xcassets */; };
 		C526E8D624E30D75008290B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C526E8D424E30D75008290B2 /* LaunchScreen.storyboard */; };
-		C526E8E124E30D75008290B2 /* MarvelCharactersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526E8E024E30D75008290B2 /* MarvelCharactersTests.swift */; };
+		C526E8E124E30D75008290B2 /* MarvelCharactersServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C526E8E024E30D75008290B2 /* MarvelCharactersServiceTests.swift */; };
 		C55ACC8624E6359D009F88D3 /* ComicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55ACC8324E6359D009F88D3 /* ComicDetailViewController.swift */; };
 		C55ACC8724E6359D009F88D3 /* ComicDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55ACC8424E6359D009F88D3 /* ComicDetailViewModel.swift */; };
 		C55ACC8824E6359D009F88D3 /* ComicDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55ACC8524E6359D009F88D3 /* ComicDetailView.swift */; };
@@ -29,6 +29,10 @@
 		C5A0CCBA24E618BC00511437 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0CCB724E618BC00511437 /* CharacterDetailViewModel.swift */; };
 		C5A0CCBB24E618BC00511437 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0CCB824E618BC00511437 /* CharacterDetailViewController.swift */; };
 		C5A0CCBC24E618BC00511437 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A0CCB924E618BC00511437 /* CharacterDetailView.swift */; };
+		C5B66DA824E6467F0072EAE2 /* CharactersNavigationDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B66DA524E6467F0072EAE2 /* CharactersNavigationDelegateMock.swift */; };
+		C5B66DA924E6467F0072EAE2 /* CharactersViewMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B66DA624E6467F0072EAE2 /* CharactersViewMock.swift */; };
+		C5B66DAA24E6467F0072EAE2 /* MarvelCharactersServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B66DA724E6467F0072EAE2 /* MarvelCharactersServiceMock.swift */; };
+		C5E0780324E6460500BE852A /* CharactersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E0780224E6460500BE852A /* CharactersViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +54,7 @@
 		C526E8D524E30D75008290B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C526E8D724E30D75008290B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C526E8DC24E30D75008290B2 /* MarvelCharactersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelCharactersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C526E8E024E30D75008290B2 /* MarvelCharactersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharactersTests.swift; sourceTree = "<group>"; };
+		C526E8E024E30D75008290B2 /* MarvelCharactersServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharactersServiceTests.swift; sourceTree = "<group>"; };
 		C526E8E224E30D75008290B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55ACC8324E6359D009F88D3 /* ComicDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetailViewController.swift; sourceTree = "<group>"; };
 		C55ACC8424E6359D009F88D3 /* ComicDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicDetailViewModel.swift; sourceTree = "<group>"; };
@@ -68,6 +72,10 @@
 		C5A0CCB724E618BC00511437 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 		C5A0CCB824E618BC00511437 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
 		C5A0CCB924E618BC00511437 /* CharacterDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		C5B66DA524E6467F0072EAE2 /* CharactersNavigationDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersNavigationDelegateMock.swift; sourceTree = "<group>"; };
+		C5B66DA624E6467F0072EAE2 /* CharactersViewMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharactersViewMock.swift; sourceTree = "<group>"; };
+		C5B66DA724E6467F0072EAE2 /* MarvelCharactersServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarvelCharactersServiceMock.swift; sourceTree = "<group>"; };
+		C5E0780224E6460500BE852A /* CharactersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +179,8 @@
 		C526E8DF24E30D75008290B2 /* MarvelCharactersTests */ = {
 			isa = PBXGroup;
 			children = (
-				C526E8E024E30D75008290B2 /* MarvelCharactersTests.swift */,
+				C5E077FF24E645E400BE852A /* Module */,
+				C55ACC8E24E641AB009F88D3 /* Services */,
 				C526E8E224E30D75008290B2 /* Info.plist */,
 			);
 			path = MarvelCharactersTests;
@@ -185,6 +194,14 @@
 				C55ACC8324E6359D009F88D3 /* ComicDetailViewController.swift */,
 			);
 			path = ComicDetail;
+			sourceTree = "<group>";
+		};
+		C55ACC8E24E641AB009F88D3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C526E8E024E30D75008290B2 /* MarvelCharactersServiceTests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		C56A495024E4D421008D5DF0 /* Characters */ = {
@@ -214,6 +231,33 @@
 				C5A0CCB824E618BC00511437 /* CharacterDetailViewController.swift */,
 			);
 			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		C5E077FF24E645E400BE852A /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				C5E0780024E645EC00BE852A /* Characters */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		C5E0780024E645EC00BE852A /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				C5E0780124E645F400BE852A /* Mocks */,
+				C5E0780224E6460500BE852A /* CharactersViewModelTests.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		C5E0780124E645F400BE852A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C5B66DA724E6467F0072EAE2 /* MarvelCharactersServiceMock.swift */,
+				C5B66DA624E6467F0072EAE2 /* CharactersViewMock.swift */,
+				C5B66DA524E6467F0072EAE2 /* CharactersNavigationDelegateMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +408,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C526E8E124E30D75008290B2 /* MarvelCharactersTests.swift in Sources */,
+				C5E0780324E6460500BE852A /* CharactersViewModelTests.swift in Sources */,
+				C5B66DA924E6467F0072EAE2 /* CharactersViewMock.swift in Sources */,
+				C5B66DAA24E6467F0072EAE2 /* MarvelCharactersServiceMock.swift in Sources */,
+				C526E8E124E30D75008290B2 /* MarvelCharactersServiceTests.swift in Sources */,
+				C5B66DA824E6467F0072EAE2 /* CharactersNavigationDelegateMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
