@@ -9,7 +9,8 @@
 import UIKit
 
 protocol MarvelComicsServiceProtocol {
-
+    func requestComics(forCharacter id: Int, completion: @escaping ([Comic]?) -> Void)
+    func fetchSingleImage(at url: URL, _ completion: @escaping (UIImage) -> Void)
 }
 
 /// Services Layer for MarvelCharacters
@@ -75,5 +76,23 @@ class MarvelComicsService: MarvelComicsServiceProtocol {
 
         task.resume()
     }
-    
+
+    // MARK: - Fetch Image
+
+    // OBS: Should be improved.
+
+     /// Fetches one image.
+    func fetchSingleImage(at url: URL, _ completion: @escaping (UIImage) -> Void) {
+
+        // Request the image
+        let imageTask = URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data, let image = UIImage(data: data) else { return }
+
+            // The image should be saved at the correct position from the images array
+            completion(image)
+        }
+
+        imageTask.resume()
+    }
+
 }

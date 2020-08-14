@@ -61,6 +61,14 @@ struct Comic: Codable {
         case modified, isbn, upc, diamondCode, ean, issn, format, pageCount, textObjects, resourceURI, urls, series, variants, collections, collectedIssues, dates, prices, thumbnail, images, creators, characters, stories, events
         // swiftlint:enable  line_length
     }
+
+    // Get image URL
+    func getImageURL() -> URL? {
+        let thumbnailExtension = self.thumbnail.thumbnailExtension.rawValue 
+        let httpsPath = self.thumbnail.path.replacingOccurrences(of: "http", with: "https")
+        // Load only portrait_medium images
+        return URL(string: (httpsPath + "/portrait_medium." + thumbnailExtension))
+    }
 }
 
 // MARK: - Characters
@@ -108,6 +116,19 @@ enum Format: String, Codable {
     case comic = "Comic"
     case hardcover = "Hardcover"
     case tradePaperback = "Trade Paperback"
+    case empty = ""
+}
+
+// So that a Unknown case do not crash the application
+extension Format {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        // Convert current possible itemType to string
+        let rawMaterial = try container.decode(String.self)
+        // Try to initialize enum with its rawValue.
+        // Case not listed, return empty
+        self = Format(rawValue: rawMaterial) ?? .empty
+    }
 }
 
 // MARK: - Thumbnail
@@ -128,6 +149,18 @@ enum Issn: String, Codable {
     case the15498638 = "1549-8638"
     case the19325266 = "1932-5266"
     case the25740628 = "2574-0628"
+}
+
+// So that a Unknown case do not crash the application
+extension Issn {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        // Convert current possible itemType to string
+        let rawMaterial = try container.decode(String.self)
+        // Try to initialize enum with its rawValue.
+        // Case not listed, return empty
+        self = Issn(rawValue: rawMaterial) ?? .empty
+    }
 }
 
 // MARK: - Price
@@ -178,6 +211,18 @@ enum URLType: String, Codable {
 
 enum VariantDescription: String, Codable {
     case davidFinchGatefoldVariant = "David Finch Gatefold Variant"
-    case empty = ""
     case humbertoRamosWraparoundVariant = "Humberto Ramos Wraparound Variant"
+    case empty = ""
+}
+
+// So that a Unknown case do not crash the application
+extension VariantDescription {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        // Convert current possible itemType to string
+        let rawMaterial = try container.decode(String.self)
+        // Try to initialize enum with its rawValue.
+        // Case not listed, return empty
+        self = VariantDescription(rawValue: rawMaterial) ?? .empty
+    }
 }

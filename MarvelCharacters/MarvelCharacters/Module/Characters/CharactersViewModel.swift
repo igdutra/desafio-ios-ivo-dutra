@@ -54,7 +54,7 @@ class CharactersViewModel: CharactersViewModelProtocol {
 
         services.requestCharacters { [weak self] characters in
             if let characters = characters {
-
+                // Array will be incremeted over time
                 self?.characters.append(contentsOf: characters)
                 // Make sure that table view displays the results
                 self?.delegate?.reloadTableView()

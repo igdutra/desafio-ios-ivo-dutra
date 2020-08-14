@@ -44,7 +44,8 @@ class ComicDetailViewController: UIViewController {
 
         self.title = ""
 
-        let viewModel = ComicDetailViewModel(delegate: myView,
+        let viewModel = ComicDetailViewModel(services: MarvelComicsService(),
+                                             delegate: myView,
                                              character: character)
 
         self.viewModel = viewModel
