@@ -18,7 +18,7 @@ protocol CharacterDetailViewModelProtocol {
     var character: Character { get set }
     var image: UIImage { get set }
     var delegate: CharacterDetailViewModelDelegate? { get set }
-    var navigationDelegate: NavigationDelegate? { get set }
+    var navigationDelegate: CharacterDetailNavigationDelegate? { get set }
 }
 
 class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
@@ -28,11 +28,11 @@ class CharacterDetailViewModel: CharacterDetailViewModelProtocol {
     var character: Character
     var image: UIImage
     weak var delegate: CharacterDetailViewModelDelegate?
-    weak var navigationDelegate: NavigationDelegate?
+    weak var navigationDelegate: CharacterDetailNavigationDelegate?
 
     // MARK: - Init
 
-    init(delegate: CharacterDetailViewModelDelegate, navigation: NavigationDelegate, character: Character, image: UIImage) {
+    init(delegate: CharacterDetailViewModelDelegate, navigation: CharacterDetailNavigationDelegate, character: Character, image: UIImage) {
         self.character = character
         self.image = image
         self.delegate = delegate

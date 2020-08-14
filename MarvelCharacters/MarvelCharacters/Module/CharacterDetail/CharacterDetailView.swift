@@ -58,7 +58,7 @@ extension CharacterDetailView: CharacterDetailViewModelDelegate {
 extension CharacterDetailView {
 
     @objc func buttonPressed(sender: UIButton!) {
-        print("preeesh")
+        viewModel?.navigationDelegate?.goToComicDetail()
     }
 }
 
