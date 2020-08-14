@@ -17,7 +17,13 @@ class ComicDetailView: UIView {
     var descriptionLabel: UILabel
     var priceLabel: UILabel
 
-    var viewModel: ComicDetailViewModelProtocol? 
+    var viewModel: ComicDetailViewModelProtocol? {
+        didSet {
+            configure()
+            // Set placeholder before image is loaded
+            configureIcon(withImage: nil)
+        }
+    }
 
     // MARK: - Init
 
