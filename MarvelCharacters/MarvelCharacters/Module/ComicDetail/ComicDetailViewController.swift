@@ -42,7 +42,7 @@ class ComicDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = ""
+        self.title = "Most expensive Comic"
 
         let viewModel = ComicDetailViewModel(services: MarvelComicsService(),
                                              delegate: myView,

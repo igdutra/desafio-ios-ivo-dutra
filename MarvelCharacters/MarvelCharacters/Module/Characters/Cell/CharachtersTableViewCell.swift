@@ -77,7 +77,7 @@ extension CharactersTableViewCell: ViewCodable {
         // This enables the view to be pinned to the borders
         centralImageView.contentMode = .scaleAspectFit
         // Add placeholder photo
-        centralImageView.image = UIImage.Default.photoPlaceholder
+        centralImageView.image = UIImage.Default.characterPlaceholder
     }
 
     func configureLabel() {

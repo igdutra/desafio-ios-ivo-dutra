@@ -11,12 +11,12 @@ import UIKit
 /// ViewModel's Delegate is the View
 protocol ComicDetailViewModelDelegate: class {
     func reload()
-    func configureIcon(withImage image: UIImage)
+    func configureIcon(withImage image: UIImage?)
 }
 
 protocol ComicDetailViewModelProtocol {
     var expensiveComic: Comic? { get set }
-    var comicImage: UIImage { get set }
+    var comicImage: UIImage? { get set }
     var delegate: ComicDetailViewModelDelegate? { get set }
 }
 
@@ -26,10 +26,10 @@ class ComicDetailViewModel: ComicDetailViewModelProtocol {
     var character: Character
     var comics: [Comic]
     var expensiveComic: Comic?
-    var comicImage: UIImage {
+    var comicImage: UIImage? {
         didSet {
             delegate?.reload()
-            delegate?.configureIcon(withImage: comicImage.withRoundedCorners(radius: 12)!)
+            delegate?.configureIcon(withImage: comicImage?.withRoundedCorners(radius: 12))
         }
     }
 
@@ -43,7 +43,6 @@ class ComicDetailViewModel: ComicDetailViewModelProtocol {
         self.delegate = delegate
         self.character = character
         self.comics = []
-        self.comicImage = UIImage()
 
         // Request all comics
         getAllComics()

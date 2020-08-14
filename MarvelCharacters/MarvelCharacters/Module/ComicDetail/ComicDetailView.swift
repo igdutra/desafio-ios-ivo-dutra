@@ -14,19 +14,18 @@ class ComicDetailView: UIView {
 
     var titleLabel: UILabel
     var comicImageView: UIImageView
+    var descriptionLabel: UILabel
+    var priceLabel: UILabel
 
-    var viewModel: ComicDetailViewModelProtocol? {
-
-        didSet {
-            configure()
-        }
-    }
+    var viewModel: ComicDetailViewModelProtocol? 
 
     // MARK: - Init
 
     override init(frame: CGRect) {
         titleLabel = UILabel()
         comicImageView = UIImageView()
+        descriptionLabel = UILabel()
+        priceLabel = UILabel()
 
         super.init(frame: frame)
 
@@ -56,40 +55,53 @@ extension ComicDetailView: ViewCodable {
     func configure() {
         guard let viewModel = viewModel else { return }
 
-        let description = viewModel.expensiveComic?.title ?? "Title"
+        let title = viewModel.expensiveComic?.title ?? ""
+        let description = viewModel.expensiveComic?.resultDescription ??  "No Description :'("
+        let price: String = "$ " + (viewModel.expensiveComic?.prices[0].price.description ?? "?")
 
-        configureLabel(withDescription: description)
+        configureLabel(title: title, description: description, price: price)
     }
 
     func setupHierarchy() {
-        self.addSubviews(titleLabel, comicImageView)
+        self.addSubviews(titleLabel, comicImageView, descriptionLabel, priceLabel)
     }
 
     func setupConstraints() {
         setCharacterImageViewConstraints()
-        settitleLabelConstraints()
+        setTitleLabelConstraints()
+        setDescriptionLabelConstraints()
+        setPriceLabelConstraints()
     }
 
     func render() {
+        self.priceLabel.textColor = .red
         self.backgroundColor = .white
     }
 
       // MARK: - ViewCodable Helpers
 
-    func configureIcon(withImage image: UIImage) {
+    func configureIcon(withImage image: UIImage?) {
         DispatchQueue.main.async {
-            self.comicImageView.image = image
+            self.comicImageView.image = image ?? UIImage.Default.imagePlaceholder
         }
     }
 
-    func configureLabel(withDescription description: String) {
+    func configureLabel(title: String, description: String, price: String) {
         // UI Code should run on main Thread
         DispatchQueue.main.async {
             self.titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+            self.priceLabel.font = UIFont.boldSystemFont(ofSize: 18)
+
             self.titleLabel.textAlignment = .center
+            self.descriptionLabel.textAlignment = .center
+
             // OBS: As requested, "Os campos de texto devem ter no máximo 3 linhas"
             self.titleLabel.numberOfLines = 3
-            self.titleLabel.text = description
+            self.descriptionLabel.numberOfLines = 3
+
+            self.titleLabel.text = title
+            self.descriptionLabel.text = description
+            self.priceLabel.text = price
         }
     }
 
@@ -100,7 +112,7 @@ extension ComicDetailView: ViewCodable {
            }
        }
 
-    func settitleLabelConstraints() {
+    func setTitleLabelConstraints() {
         titleLabel.setConstraints { (view) in
             // At least keep distance greater then 16 points
             view.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16).isActive = true
@@ -108,6 +120,23 @@ extension ComicDetailView: ViewCodable {
             view.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
             view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
             view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        }
+    }
+
+    func setDescriptionLabelConstraints() {
+        descriptionLabel.setConstraints { (view) in
+            // At least keep distance greater then 32 points
+            view.topAnchor.constraint(equalTo: comicImageView.bottomAnchor, constant: 52).isActive = true
+            view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            view.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
+            view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        }
+    }
+
+    func setPriceLabelConstraints() {
+        priceLabel.setConstraints { (view) in
+            view.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            view.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -102).isActive = true
         }
     }
 

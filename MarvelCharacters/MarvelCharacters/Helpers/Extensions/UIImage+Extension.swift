@@ -10,7 +10,8 @@ import UIKit
 
 extension UIImage {
     struct Default {
-        static let photoPlaceholder = UIImage(named: "placeholder")
+        static let characterPlaceholder = UIImage(named: "characterPlaceHolder")
+        static let imagePlaceholder = UIImage(named: "imagePlaceHolder")
     }
 
     /// Using view.layer.cornerRadius turns only background (the layer) with cornerRadius. An image from imageView needs to be also drawn with this.

@@ -50,7 +50,7 @@ extension CharactersView: UITableViewDelegate, UITableViewDataSource {
 
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? CharactersTableViewCell {
             // Update CentralImageView or use the placeholder before request is finished
-            cell.centralImageView.image = viewModel.images[indexPath.row] ?? UIImage.Default.photoPlaceholder!
+            cell.centralImageView.image = viewModel.images[indexPath.row] ?? UIImage.Default.characterPlaceholder!
 
             // Add title according to the day
             cell.titleLabel.text = viewModel.characters[indexPath.row].name
