@@ -20,7 +20,7 @@ protocol CharactersViewModelProtocol {
     var delegate: CharactersViewModelDelegate? { get set }
     var navigationDelegate: NavigationDelegate? { get set }
 
-    func get20Characters()
+    func get20Characters(_ completion: @escaping () -> Void)
 }
 
 class CharactersViewModel: CharactersViewModelProtocol {
@@ -50,7 +50,7 @@ class CharactersViewModel: CharactersViewModelProtocol {
 
     // MARK: - Get Characters
 
-    func get20Characters() {
+    func get20Characters(_ completion: @escaping () -> Void = { }) {
 
         services.requestCharacters { [weak self] characters in
             if let characters = characters {
@@ -62,6 +62,8 @@ class CharactersViewModel: CharactersViewModelProtocol {
                 self?.fetch20Images {
                     // Make sure that table view displays the results
                     self?.delegate?.reloadTableView()
+                    // Set View's fetchingMore back to false
+                    completion()
                 }
 
             } else {
@@ -76,7 +78,7 @@ class CharactersViewModel: CharactersViewModelProtocol {
     /// If no image was requested, range is 0...20
     /// If some images where alread loaded, then grab the images always inside a +20 interval
     /// Completion: set scroll flag back to false
-    func fetch20Images(_ completion: @escaping () -> Void = { }) {
+    func fetch20Images(_ completion: @escaping () -> Void) {
 
         let range = (images.count)...(images.count + 19) // 20 total
 
@@ -96,6 +98,7 @@ class CharactersViewModel: CharactersViewModelProtocol {
                 if id == range.max() {
                     // Increment services offset when operation was finished
                     self?.services.offset += 20
+                    // Reload Data
                     completion()
                 }
             }

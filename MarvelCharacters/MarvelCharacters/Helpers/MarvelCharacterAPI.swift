@@ -83,9 +83,27 @@ struct StoriesItem: Codable {
 }
 
 enum ItemType: String, Codable {
+    case ad = "ad"
+    case backcovers = "backcovers"
     case cover = "cover"
-    case empty = ""
     case interiorStory = "interiorStory"
+    case pinup = "pinup"
+    case recap = "recap"
+    case textArticle = "text article"
+    // Default case for unknown cases
+    case empty = ""
+}
+
+// So that a Unknown case do not crash the application
+extension ItemType {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        // Convert current possible itemType to string
+        let rawMaterial = try container.decode(String.self)
+        // Try to initialize enum with its rawValue.
+        // Case not listed, return empty
+        self = ItemType(rawValue: rawMaterial) ?? .empty
+    }
 }
 
 // MARK: - Thumbnail
@@ -104,6 +122,7 @@ enum Extension: String, Codable {
     // swiftlint:disable redundant_string_enum_value
     case gif = "gif"
     case jpg = "jpg"
+    case png = "png"
     // swiftlint:enable redundant_string_enum_value
 }
 

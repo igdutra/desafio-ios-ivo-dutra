@@ -70,9 +70,15 @@ class MarvelCharactersService: MarvelCharactersServiceProtocol {
 
             let jsonDecoder = JSONDecoder()
 
-            if let data = data, let marvelAPI = try? jsonDecoder.decode(MarvelCharactersAPI.self, from: data) {
-                guard let characters = marvelAPI.data?.results else { return }
-                completion(characters)
+            if let data = data {
+                do {
+                    let marvelAPI = try jsonDecoder.decode(MarvelCharactersAPI.self, from: data)
+                    guard let characters = marvelAPI.data?.results else { return }
+                    completion(characters)
+                } catch let err {
+                    print(url)
+                    print(err)
+                }
             } else {
                 print("No data returned")
                 completion(nil)

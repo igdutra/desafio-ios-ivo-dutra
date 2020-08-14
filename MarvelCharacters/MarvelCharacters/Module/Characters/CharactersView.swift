@@ -98,31 +98,28 @@ extension CharactersView: ViewCodable {
     }
 }
 
-// TODO: infinite scroll
+    // MARK: - Infinite scroll
 
-//
-//    // MARK: - Infinite scroll
-//
-//extension CharactersView {
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        // Calculated automatically, considered all images
-//        let contentHeight = scrollView.contentSize.height
-//
-//        // If the scroll action was greater than the content - device size
-//        if offsetY > contentHeight - scrollView.frame.height {
-//            if !fetchingMore {
-//                fetchMoreImages()
-//            }
-//        }
-//    }
-//
-//    func fetchMoreImages() {
-//        // Prevent calling several times
-//        fetchingMore = true
-//        viewModel?.get20Characters { [weak self] in
-//            self?.fetchingMore = false
-//        }
-//    }
-//}
+extension CharactersView {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        // Calculated automatically, considered all images
+        let contentHeight = scrollView.contentSize.height
+
+        // If the scroll action was greater than the content - device size
+        if offsetY > contentHeight - scrollView.frame.height {
+            if !fetchingMore {
+                fetchMoreImages()
+            }
+        }
+    }
+
+    func fetchMoreImages() {
+        // Prevent calling several times
+        fetchingMore = true
+        viewModel?.get20Characters { [weak self] in
+            self?.fetchingMore = false
+        }
+    }
+}
