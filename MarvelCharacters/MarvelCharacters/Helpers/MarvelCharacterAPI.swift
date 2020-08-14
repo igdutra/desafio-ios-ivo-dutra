@@ -17,11 +17,11 @@ struct MarvelCharactersAPI: Codable {
     let code: Int
     let status, copyright, attributionText, attributionHTML: String
     let etag: String
-    let data: DataClass?
+    let data: CharacterDataClass?
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct CharacterDataClass: Codable {
     let offset, limit, total, count: Int
     let results: [Character]?
 }
@@ -31,12 +31,12 @@ struct Character: Codable {
     let id: Int
     let name, characterDescription: String
     let modified: String
-    let thumbnail: Thumbnail
+    let thumbnail: CharacterThumbnail
     let resourceURI: String
     let comics, series: Comics
     let stories: Stories
     let events: Comics
-    let urls: [URLElement]?
+    let urls: [CharacterURLElement]?
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -90,6 +90,7 @@ enum ItemType: String, Codable {
     case pinup = "pinup"
     case recap = "recap"
     case textArticle = "text article"
+    case letters = "letters"
     // Default case for unknown cases
     case empty = ""
 }
@@ -107,7 +108,7 @@ extension ItemType {
 }
 
 // MARK: - Thumbnail
-struct Thumbnail: Codable {
+struct CharacterThumbnail: Codable {
     let path: String
     let thumbnailExtension: Extension?
 
@@ -127,12 +128,12 @@ enum Extension: String, Codable {
 }
 
 // MARK: - URLElement
-struct URLElement: Codable {
-    let type: URLType?
+struct CharacterURLElement: Codable {
+    let type: CharacterURLType?
     let url: String
 }
 
-enum URLType: String, Codable {
+enum CharacterURLType: String, Codable {
     case comiclink
     case detail
     case wiki

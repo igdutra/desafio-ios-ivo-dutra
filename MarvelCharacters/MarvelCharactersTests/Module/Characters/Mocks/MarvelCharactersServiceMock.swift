@@ -49,7 +49,7 @@ class MarvelCharactersServiceMock: MarvelCharactersServiceProtocol {
                         characterDescription: "",
                         modified: "",
                         // Needed to create a URL
-                        thumbnail: Thumbnail(path: "http", thumbnailExtension: Extension(rawValue: "jpg")),
+                        thumbnail: CharacterThumbnail(path: "http", thumbnailExtension: Extension(rawValue: "jpg")),
                         resourceURI: "",
                         comics: Comics(available: 0, collectionURI: "", items: nil, returned: 0),
                         series: Comics(available: 0, collectionURI: "", items: nil, returned: 0),
